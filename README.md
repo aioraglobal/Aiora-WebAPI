@@ -66,7 +66,6 @@ The server will run on port 3001 by default.
 ### Admin Endpoints
 
 - `POST /api/admin/fetch-products` - Fetch fresh data from Strawberrynet API
-- `GET /api/health` - Health check
 
 ## Data Format
 

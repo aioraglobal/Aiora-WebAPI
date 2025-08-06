@@ -92,11 +92,6 @@ app.post('/api/admin/fetch-products', async (req, res) => {
   }
 });
 
-// Health check
-app.get('/api/health', (req, res) => {
-  res.json({ status: 'OK', timestamp: new Date().toISOString() });
-});
-
 // Start server
 app.listen(PORT, () => {
   console.log(`Aiora WebAPI server running on port ${PORT}`);
@@ -106,7 +101,6 @@ app.listen(PORT, () => {
   console.log(`  GET  /api/categories - Get all categories`);
   console.log(`  GET  /api/products/category/:category - Get products by category`);
   console.log(`  POST /api/admin/fetch-products - Fetch fresh data from Strawberrynet API`);
-  console.log(`  GET  /api/health - Health check`);
 });
 
 module.exports = app; 
