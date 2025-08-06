@@ -1,0 +1,24 @@
+{
+  "name": "aiora-webapi",
+  "version": "1.0.0",
+  "description": "Aiora Web API for fetching and converting product data",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "fetch-products": "node src/fetchProducts.js",
+    "test-api": "node src/testApi.js",
+    "dev": "nodemon src/index.js"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "xml2js": "^0.6.2",
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "keywords": ["api", "products", "strawberrynet"],
+  "author": "Aiora",
+  "license": "MIT"
+} 
