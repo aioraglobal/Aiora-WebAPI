@@ -140,7 +140,7 @@ if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
     console.log(`  GET  /api/categories - Get all categories`);
     console.log(`  GET  /api/products/category/:category - Get products by category`);
     console.log(`  POST /api/admin/fetch-products - Fetch fresh data from Strawberrynet API`);
-    console.log(`  GET  /api/cron/fetch-products - Cron job endpoint (runs every hour)`);
+    console.log(`  GET  /api/cron/fetch-products - Cron job endpoint (runs daily at midnight)`);
   });
 }
 
