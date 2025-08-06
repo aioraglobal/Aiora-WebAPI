@@ -92,15 +92,30 @@ app.post('/api/admin/fetch-products', async (req, res) => {
   }
 });
 
-// Start server
-app.listen(PORT, () => {
-  console.log(`Aiora WebAPI server running on port ${PORT}`);
-  console.log(`Available endpoints:`);
-  console.log(`  GET  /api/products - Get all products`);
-  console.log(`  GET  /api/products/:id - Get product by ID`);
-  console.log(`  GET  /api/categories - Get all categories`);
-  console.log(`  GET  /api/products/category/:category - Get products by category`);
-  console.log(`  POST /api/admin/fetch-products - Fetch fresh data from Strawberrynet API`);
+// Root endpoint for health check
+app.get('/', (req, res) => {
+  res.json({ 
+    message: 'Aiora WebAPI is running',
+    endpoints: {
+      products: '/api/products',
+      categories: '/api/categories',
+      productById: '/api/products/:id',
+      productsByCategory: '/api/products/category/:category'
+    }
+  });
 });
+
+// Start server only if not in Vercel environment
+if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`Aiora WebAPI server running on port ${PORT}`);
+    console.log(`Available endpoints:`);
+    console.log(`  GET  /api/products - Get all products`);
+    console.log(`  GET  /api/products/:id - Get product by ID`);
+    console.log(`  GET  /api/categories - Get all categories`);
+    console.log(`  GET  /api/products/category/:category - Get products by category`);
+    console.log(`  POST /api/admin/fetch-products - Fetch fresh data from Strawberrynet API`);
+  });
+}
 
 module.exports = app; 
