@@ -5,6 +5,7 @@ node_modules/
 .git/
 .gitignore
 README.md
+DEPLOYMENT.md
 
 # Logs
 *.log
@@ -67,4 +68,8 @@ Thumbs.db
 
 # Temporary files
 tmp/
-temp/ 
+temp/
+
+# Keep data directory for deployment
+!data/
+!data/products.json 
