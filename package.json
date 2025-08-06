@@ -7,7 +7,8 @@
     "start": "node src/index.js",
     "fetch-products": "node src/fetchProducts.js",
     "test-api": "node src/testApi.js",
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon src/index.js",
+    "monitor": "node src/cronMonitor.js"
   },
   "dependencies": {
     "axios": "^1.6.0",

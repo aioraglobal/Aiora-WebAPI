@@ -92,6 +92,31 @@ app.post('/api/admin/fetch-products', async (req, res) => {
   }
 });
 
+// Cron job endpoint to fetch products automatically
+app.get('/api/cron/fetch-products', async (req, res) => {
+  try {
+    console.log('Cron job: Fetching fresh products...');
+    
+    const productData = await productFetcher.fetchProductsWithTranslations();
+    await productFetcher.saveToFile(productData);
+    
+    console.log(`Cron job completed: Fetched ${productData.products.length} products`);
+    
+    res.json({ 
+      message: 'Cron job: Products fetched and saved successfully',
+      timestamp: new Date().toISOString(),
+      count: productData.products.length,
+      categories: productData.categories.length
+    });
+  } catch (error) {
+    console.error('Cron job error fetching products:', error);
+    res.status(500).json({ 
+      error: 'Cron job failed to fetch products',
+      timestamp: new Date().toISOString()
+    });
+  }
+});
+
 // Root endpoint for health check
 app.get('/', (req, res) => {
   res.json({ 
@@ -115,6 +140,7 @@ if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
     console.log(`  GET  /api/categories - Get all categories`);
     console.log(`  GET  /api/products/category/:category - Get products by category`);
     console.log(`  POST /api/admin/fetch-products - Fetch fresh data from Strawberrynet API`);
+    console.log(`  GET  /api/cron/fetch-products - Cron job endpoint (runs every hour)`);
   });
 }
 
